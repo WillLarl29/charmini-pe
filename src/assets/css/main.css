@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-blue: #CBE2E2;
+  --color-black: #000000;
+  --color-cream: #FFEFC5;
+}
+
+body {
+  background-color: #FAF8F5;
+  color: #000000;
+  font-family: 'Quicksand', 'Fredoka', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FFEFC5;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBE2E2;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #93BFC0;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Cute badge styling */
+.btn-kawaii {
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-kawaii:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-kawaii:active {
+  transform: translateY(1px) scale(0.98);
+}
