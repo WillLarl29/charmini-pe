@@ -24,9 +24,9 @@
       <!-- Image -->
       <div class="aspect-square rounded-2xl overflow-hidden bg-white border border-charmini-black/20 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300">
         <img
-          v-if="product.image"
-          :src="product.image"
-          :alt="product.name"
+          v-if="currentImage"
+          :src="currentImage"
+          :alt="cartProduct.name"
           class="w-full h-full object-cover rounded-xl"
           @error="handleImageError"
         />
@@ -37,6 +37,32 @@
         >
           <span class="text-5xl animate-float" aria-hidden="true">👻</span>
           <span class="text-spooky-moon font-display font-bold text-sm">Foto próximamente</span>
+        </div>
+      </div>
+
+      <!-- Design Picker (BTS polos) -->
+      <div v-if="product.designs" class="mt-3">
+        <p class="text-[11px] font-black uppercase tracking-wider text-charmini-gray mb-1.5">
+          Diseño: <span class="text-charmini-black">{{ selectedDesign.name }}</span>
+        </p>
+        <div class="grid grid-cols-4 gap-1.5">
+          <button
+            v-for="design in product.designs"
+            :key="design.id"
+            type="button"
+            @click="selectedDesign = design"
+            :title="design.name"
+            :aria-label="`Diseño ${design.name}`"
+            :aria-pressed="selectedDesign.id === design.id"
+            :class="[
+              'aspect-square rounded-lg overflow-hidden border-2 transition-all',
+              selectedDesign.id === design.id
+                ? 'border-spooky-pumpkin ring-2 ring-charmini-black'
+                : 'border-charmini-black/20 hover:border-charmini-black'
+            ]"
+          >
+            <img :src="design.image" :alt="design.name" class="w-full h-full object-cover" />
+          </button>
         </div>
       </div>
 
@@ -64,7 +90,7 @@
       <!-- Action Buttons -->
       <div class="pt-2 space-y-2">
         <button
-          @click="addToCart(product)"
+          @click="addToCart(cartProduct)"
           class="w-full bg-spooky-pumpkin hover:bg-spooky-pumpkin-dark text-charmini-black font-extrabold py-2.5 px-4 rounded-xl border-2 border-charmini-black shadow-sm flex items-center justify-center gap-2 btn-kawaii text-sm"
         >
           <ShoppingBag class="w-4 h-4" />
@@ -72,7 +98,7 @@
         </button>
 
         <button
-          @click="buyNowWhatsApp(product)"
+          @click="buyNowWhatsApp(cartProduct)"
           class="w-full bg-[#25D366] hover:bg-[#1faa53] text-white font-bold py-2 px-4 rounded-xl border-2 border-charmini-black shadow-sm flex items-center justify-center gap-2 text-xs transition-colors"
         >
           <MessageCircle class="w-4 h-4 fill-current" />
@@ -86,7 +112,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { ShoppingBag, MessageCircle } from 'lucide-vue-next'
 import { useCart } from '../../composables/useCart'
 
@@ -98,6 +124,24 @@ const props = defineProps({
 })
 
 const { addToCart, openWhatsAppDirect } = useCart()
+
+// Products with several designs start on the design matching their cover image
+const selectedDesign = ref(
+  props.product.designs?.find(design => design.image === props.product.image) || props.product.designs?.[0] || null
+)
+
+const currentImage = computed(() => selectedDesign.value?.image || props.product.image)
+
+// Each design is a separate cart line so the order says which one was chosen
+const cartProduct = computed(() => {
+  if (!selectedDesign.value) return props.product
+  return {
+    ...props.product,
+    id: `${props.product.id}-${selectedDesign.value.id}`,
+    name: `${props.product.name} - ${selectedDesign.value.name}`,
+    image: selectedDesign.value.image
+  }
+})
 
 const lineBadgeClass = computed(() => {
   const classes = {

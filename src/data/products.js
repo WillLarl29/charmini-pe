@@ -6,6 +6,14 @@ export const productLines = [
   { id: 'sorpresa', name: 'Sorpresas', icon: '🎁' }
 ]
 
+// BTS polo designs, shared by the oversize and regular cuts
+const btsDesigns = [
+  { id: 'arirang', name: 'Arirang', image: '/images/products/segunda-feria/polo-arirang.jpg' },
+  { id: 'hope-on-the-street', name: 'Hope on the Street', image: '/images/products/segunda-feria/polo-hope-on-the-street.jpeg' },
+  { id: 'jhope-tour', name: 'J-Hope Tour', image: '/images/products/segunda-feria/polo-jhope-tour.jpeg' },
+  { id: 'v-taehyung', name: 'V Taehyung', image: '/images/products/segunda-feria/polo-v-taehyung.jpg' }
+]
+
 export const products = [
   {
     id: 'spooky-001',
@@ -67,8 +75,9 @@ export const products = [
     lineName: 'K-Pop Corner',
     price: 35,
     formattedPrice: 'S/ 35.00',
-    description: 'Polo oversize con diseño de BTS. Corte holgado y cómodo para lucir tu lado ARMY en el campus.',
-    image: null,
+    description: 'Polo oversize con diseño de BTS. Corte holgado y cómodo para lucir tu lado ARMY en el campus. Elige tu diseño.',
+    image: btsDesigns[0].image,
+    designs: btsDesigns,
     badge: 'ARMY 💜',
     inStock: true
   },
@@ -80,8 +89,9 @@ export const products = [
     lineName: 'K-Pop Corner',
     price: 30,
     formattedPrice: 'S/ 30.00',
-    description: 'Polo corte regular con diseño de BTS. Disponible en tallas S y M.',
-    image: null,
+    description: 'Polo corte regular con diseño de BTS. Disponible en tallas S y M. Elige tu diseño.',
+    image: btsDesigns[1].image,
+    designs: btsDesigns,
     badge: 'Tallas S y M',
     inStock: true
   },
