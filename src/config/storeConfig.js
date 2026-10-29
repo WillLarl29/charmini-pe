@@ -5,8 +5,8 @@ export const storeConfig = {
   mascotDesc: 'Un dumpling con carita kawaii y su estrella colgante ✨',
 
   // Contact details (easy to update by the user)
-  whatsappNumber: '51999999999', // Change to actual number e.g. 51987654321
-  whatsappDisplay: '+51 999 999 999',
+  whatsappNumber: '51950727836',
+  whatsappDisplay: '+51 950 727 836',
   instagramHandle: 'charmini.pe',
   instagramUrl: 'https://www.instagram.com/charmini.pe/',
 
