@@ -54,13 +54,59 @@
 
       </div>
 
-      <!-- Products Grid -->
-      <div v-if="filteredProducts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <ProductCard
-          v-for="product in filteredProducts"
-          :key="product.id"
-          :product="product"
-        />
+      <!-- Products Carousel -->
+      <div v-if="filteredProducts.length > 0" class="relative">
+
+        <!-- Prev / Next Arrows -->
+        <button
+          type="button"
+          @click="scrollByCard(-1)"
+          :disabled="atStart"
+          aria-label="Productos anteriores"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii disabled:opacity-0 disabled:pointer-events-none"
+        >
+          <ChevronLeft class="w-6 h-6 text-charmini-black" />
+        </button>
+        <button
+          type="button"
+          @click="scrollByCard(1)"
+          :disabled="atEnd"
+          aria-label="Productos siguientes"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii disabled:opacity-0 disabled:pointer-events-none"
+        >
+          <ChevronRight class="w-6 h-6 text-charmini-black" />
+        </button>
+
+        <!-- Track -->
+        <div
+          ref="track"
+          @scroll.passive="updateScrollState"
+          class="carousel-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-1 pt-2 pb-6"
+        >
+          <div
+            v-for="product in filteredProducts"
+            :key="product.id"
+            class="carousel-item snap-start flex-shrink-0 w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex"
+          >
+            <ProductCard :product="product" class="w-full" />
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 mt-2">
+          <button
+            v-for="(product, index) in filteredProducts"
+            :key="product.id"
+            type="button"
+            @click="scrollToIndex(index)"
+            :aria-label="`Ir a ${product.name}`"
+            :class="[
+              'h-3 rounded-full border-2 border-charmini-black transition-all',
+              index === activeIndex ? 'w-8 bg-spooky-pumpkin' : 'w-3 bg-spooky-moon/60 hover:bg-spooky-moon'
+            ]"
+          ></button>
+        </div>
+
       </div>
 
       <!-- Empty State -->
@@ -81,8 +127,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { Search } from 'lucide-vue-next'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { Search, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { products, productLines } from '../../data/products'
 import ProductCard from './ProductCard.vue'
 
@@ -104,4 +150,52 @@ const resetFilters = () => {
   selectedLine.value = 'all'
   searchQuery.value = ''
 }
+
+// Carousel state
+const track = ref(null)
+const activeIndex = ref(0)
+const atStart = ref(true)
+const atEnd = ref(false)
+
+const cardStep = () => {
+  const item = track.value?.querySelector('.carousel-item')
+  if (!item) return 0
+  const gap = parseFloat(getComputedStyle(track.value).columnGap) || 0
+  return item.offsetWidth + gap
+}
+
+const updateScrollState = () => {
+  const el = track.value
+  if (!el) return
+  const step = cardStep()
+  activeIndex.value = step ? Math.round(el.scrollLeft / step) : 0
+  atStart.value = el.scrollLeft <= 4
+  atEnd.value = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4
+  // On the last page several cards are visible; highlight the last dot
+  if (atEnd.value) activeIndex.value = filteredProducts.value.length - 1
+}
+
+const scrollByCard = (direction) => {
+  track.value?.scrollBy({ left: direction * cardStep(), behavior: 'smooth' })
+}
+
+const scrollToIndex = (index) => {
+  track.value?.scrollTo({ left: index * cardStep(), behavior: 'smooth' })
+}
+
+// Restart the carousel whenever the filters change the product list
+watch(filteredProducts, async () => {
+  await nextTick()
+  if (track.value) track.value.scrollLeft = 0
+  updateScrollState()
+})
+
+onMounted(() => {
+  updateScrollState()
+  window.addEventListener('resize', updateScrollState)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateScrollState)
+})
 </script>

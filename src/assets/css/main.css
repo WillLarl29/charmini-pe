@@ -50,6 +50,14 @@ h1, h2, h3, h4, h5, h6, .font-display {
   background-size: 400px 400px;
 }
 
+/* Product carousel: swipeable track without a visible scrollbar */
+.carousel-track {
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
 /* Floating animation */
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
