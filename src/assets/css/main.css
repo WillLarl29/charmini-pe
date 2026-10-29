@@ -6,10 +6,13 @@
   --color-blue: #CBE2E2;
   --color-black: #000000;
   --color-cream: #FFEFC5;
+  --color-night: #1A2540;
+  --color-moon: #FFE9A8;
+  --color-pumpkin: #F5862A;
 }
 
 body {
-  background-color: #FAF8F5;
+  background-color: #1A2540;
   color: #000000;
   font-family: 'Quicksand', 'Fredoka', sans-serif;
 }
@@ -23,14 +26,28 @@ h1, h2, h3, h4, h5, h6, .font-display {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFEFC5;
+  background: #111A2E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBE2E2;
+  background: #F5862A;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #93BFC0;
+  background: #D96A12;
+}
+
+/* Starry night background for Charmiween sections */
+.bg-starry {
+  background-color: #1A2540;
+  background-image:
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(255, 233, 168, 0.9), transparent),
+    radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 55% 15%, rgba(255, 233, 168, 0.8), transparent),
+    radial-gradient(1px 1px at 75% 55%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 90% 30%, rgba(255, 233, 168, 0.8), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 85% 85%, rgba(255, 233, 168, 0.7), transparent);
+  background-size: 400px 400px;
 }
 
 /* Floating animation */
@@ -46,6 +63,26 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .animate-float-slow {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Bat flutter across the hero */
+@keyframes flutter {
+  0%, 100% { transform: translate(0, 0) scaleX(1); }
+  25% { transform: translate(12px, -10px) scaleX(0.85); }
+  50% { transform: translate(24px, 0) scaleX(1); }
+  75% { transform: translate(12px, 8px) scaleX(0.85); }
+}
+
+.animate-flutter {
+  animation: flutter 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-flutter {
+    animation: none;
+  }
 }
 
 /* Cute badge styling */

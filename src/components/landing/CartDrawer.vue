@@ -13,15 +13,15 @@
     <Transition name="slide">
       <div 
         v-if="isCartOpen"
-        class="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] bg-[#FFF8E7] border-l-4 border-charmini-black z-50 flex flex-col justify-between shadow-2xl overflow-hidden"
+        class="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] bg-[#FFF8E7] border-l-4 border-spooky-pumpkin z-50 flex flex-col justify-between shadow-2xl overflow-hidden"
       >
         <!-- Header -->
-        <div class="p-6 bg-charmini-blue border-b-2 border-charmini-black flex items-center justify-between">
+        <div class="p-6 bg-spooky-pumpkin border-b-2 border-charmini-black flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-2xl">🛒</span>
+            <span class="text-2xl">🎃</span>
             <div>
               <h3 class="font-display font-extrabold text-xl text-charmini-black">Tu Carrito Charmini</h3>
-              <p class="text-xs font-semibold text-charmini-gray">{{ totalItems }} producto(s) seleccionados</p>
+              <p class="text-xs font-semibold text-charmini-black/70">{{ totalItems }} producto(s) seleccionados</p>
             </div>
           </div>
           <button 
@@ -37,9 +37,9 @@
           
           <!-- Empty Cart State -->
           <div v-if="cartItems.length === 0" class="text-center py-16 space-y-4">
-            <div class="text-6xl animate-bounce">🥟</div>
+            <div class="text-6xl animate-bounce">👻</div>
             <h4 class="font-display font-bold text-xl">Tu carrito está vacío</h4>
-            <p class="text-sm text-charmini-gray">Elige tus minifiguras Dumi Charms (S/10) o llaveros Charmini Pals (S/5) en el catálogo.</p>
+            <p class="text-sm text-charmini-gray">Elige tus productos de Charmiween en el catálogo: portalápices, joyeros, Peperos, polos BTS y blind boxes.</p>
             <button 
               @click="isCartOpen = false"
               class="bg-charmini-cream text-charmini-black font-extrabold px-6 py-2.5 rounded-2xl border-2 border-charmini-black btn-kawaii text-sm inline-block"
@@ -55,11 +55,19 @@
               :key="item.id"
               class="bg-white rounded-2xl p-4 border-2 border-charmini-black shadow-sm flex items-center gap-4"
             >
-              <img 
-                :src="item.image" 
-                :alt="item.name" 
+              <img
+                v-if="item.image"
+                :src="item.image"
+                :alt="item.name"
                 class="w-16 h-16 object-cover rounded-xl border border-charmini-black/30"
               />
+              <div
+                v-else
+                class="w-16 h-16 rounded-xl border border-charmini-black/30 bg-starry flex items-center justify-center text-2xl flex-shrink-0"
+                aria-hidden="true"
+              >
+                👻
+              </div>
               <div class="flex-1 min-w-0">
                 <h5 class="font-bold text-sm text-charmini-black truncate">{{ item.name }}</h5>
                 <p class="text-[11px] font-semibold text-charmini-gray">{{ item.lineName }}</p>
@@ -99,7 +107,7 @@
             <label class="block text-xs font-black uppercase text-charmini-gray mb-1.5">Nota para tu pedido (opcional):</label>
             <textarea 
               v-model="customerNotes" 
-              placeholder="Ej: Deseo empaque para regalo / Entrega en facultad de Ingeniería..."
+              placeholder="Ej: Talla M para el polo BTS / Deseo empaque para regalo..."
               rows="2"
               class="w-full p-3 rounded-xl border-2 border-charmini-black bg-white text-xs focus:outline-none focus:ring-2 focus:ring-charmini-blue resize-none"
             ></textarea>

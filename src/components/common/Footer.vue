@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-charmini-black text-white pt-16 pb-12 border-t-4 border-charmini-blue">
+  <footer class="bg-charmini-black text-white pt-16 pb-12 border-t-4 border-spooky-pumpkin">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -15,14 +15,14 @@
             </span>
           </div>
           <p class="text-gray-300 text-sm max-w-sm leading-relaxed">
-            Marca de accesorios y minifiguras coleccionables Kawaii nacida en ESAN. Pequeños charms que cuentan grandes historias.
+            Marca de accesorios coleccionables y funcionales nacida en ESAN. Pequeños charms que cuentan grandes historias. 🎃 Charmiween 2026.
           </p>
           <div class="flex items-center gap-2 pt-2">
-            <span class="bg-charmini-cream text-charmini-black text-xs font-bold px-3 py-1 rounded-full border border-white">
-              Dumis S/ 10
+            <span class="bg-spooky-pumpkin text-charmini-black text-xs font-bold px-3 py-1 rounded-full border border-white">
+              🎃 Charmiween
             </span>
             <span class="bg-charmini-blue text-charmini-black text-xs font-bold px-3 py-1 rounded-full border border-white">
-              Charms S/ 5
+              {{ storeConfig.priceRange }}
             </span>
           </div>
         </div>
@@ -34,7 +34,7 @@
             <li><a href="#inicio" class="hover:text-charmini-blue transition-colors">Inicio</a></li>
             <li><a href="#sobre-dumi" class="hover:text-charmini-blue transition-colors">Sobre Dumi 🥟</a></li>
             <li><a href="#catalogo" class="hover:text-charmini-blue transition-colors">Catálogo de Productos</a></li>
-            <li><a href="#combos" class="hover:text-charmini-blue transition-colors">Promociones y Combos</a></li>
+            <li><a href="#promos" class="hover:text-charmini-blue transition-colors">Promociones Charmiween</a></li>
           </ul>
         </div>
 
@@ -76,7 +76,7 @@
       <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
         <p>© 2026 Charmini.pe - Todos los derechos reservados. Hecho con ❤️ para la comunidad ESAN.</p>
         <div class="flex items-center gap-4">
-          <span class="flex items-center gap-1">📍 Campus Universidad ESAN</span>
+          <span class="flex items-center gap-1">📍 {{ storeConfig.event.place }} - ESAN</span>
         </div>
       </div>
 

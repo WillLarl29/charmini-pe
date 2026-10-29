@@ -1,5 +1,5 @@
 <template>
-  <section id="contacto" class="py-16 bg-[#FFF8E7] relative">
+  <section id="contacto" class="py-16 bg-spooky-night-dark relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Title -->
@@ -7,11 +7,11 @@
         <span class="bg-charmini-blue text-charmini-black font-bold px-4 py-1.5 rounded-full border-2 border-charmini-black text-sm inline-block shadow-sm">
           📸 Comunidad en Instagram
         </span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-charmini-black">
-          Síguenos en <span class="bg-charmini-cream px-3 py-1 rounded-2xl border-2 border-charmini-black">@charmini.pe</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white">
+          Síguenos en <span class="bg-spooky-moon text-charmini-black px-3 py-1 rounded-2xl border-2 border-charmini-black">@charmini.pe</span>
         </h2>
-        <p class="text-lg text-charmini-gray font-medium">
-          Entérate de lanzamientos, nuevas facultades y eventos en el campus ESAN.
+        <p class="text-lg text-charmini-blue font-medium">
+          Entérate de lanzamientos, sorteos y todo lo que pasa en Charmiween. También estamos en TikTok como @charminii.pe.
         </p>
       </div>
 
@@ -54,9 +54,9 @@ import { Instagram } from 'lucide-vue-next'
 import { storeConfig } from '../../config/storeConfig'
 
 const instaPosts = [
-  { src: '/images/products/dumi-lobo.jpg', caption: 'Dumi Lobo 🐺 ¡Colección ESAN!' },
-  { src: '/images/products/dumi-leon.jpg', caption: 'Dumi León 🦁 Estética Kawaii' },
-  { src: '/images/products/dumi-vikingo.jpg', caption: 'Dumi Vikingo 🛡️ Minifiguras S/10' },
-  { src: '/images/products/dumi-toro.jpg', caption: 'Dumi Toro 🐂 Charmini Pals S/5' }
+  { src: '/images/products/segunda-feria/portalapices-jake.png', caption: 'Portalápices Jake 🐶 S/ 15' },
+  { src: '/images/products/segunda-feria/joyero-concha.jpeg', caption: 'Joyero Concha 🐚 Charmini Home' },
+  { src: '/images/products/segunda-feria/blind-box.jpeg', caption: 'Blind Box 🎁 ¿Cuál te tocará?' },
+  { src: '/images/products/segunda-feria/peperos.jpg', caption: 'Peperos 🍫 K-Pop Corner' }
 ]
 </script>

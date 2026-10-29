@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-[#FFF8E7] text-charmini-black selection:bg-charmini-blue">
+  <div class="min-h-screen flex flex-col bg-spooky-night text-charmini-black selection:bg-spooky-pumpkin">
     <!-- Navbar -->
     <Navbar />
 

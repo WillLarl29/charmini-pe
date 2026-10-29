@@ -18,6 +18,17 @@ export default {
           gray: '#222222',
           'gray-light': '#F8F9FA',
           accent: '#FF6B8B' // subtle secondary badge highlight if needed
+        },
+        // Charmiween (Halloween) palette, taken from the fair poster
+        spooky: {
+          night: '#1A2540',
+          'night-dark': '#111A2E',
+          'night-light': '#26355A',
+          moon: '#FFE9A8',
+          pumpkin: '#F5862A',
+          'pumpkin-dark': '#D96A12',
+          purple: '#6B4E9B',
+          cloud: '#A9CBE8'
         }
       },
       fontFamily: {

@@ -68,13 +68,13 @@ export function useCart() {
     }
 
     text += `💳 *Medio de pago preferido:* Yape / Plin / Efectivo\n`
-    text += `📍 *Entrega:* Campus ESAN / Coordinar`
+    text += `📍 *Entrega:* Charmiween - Explanada de Jacinto & Cornelia (ESAN) / Coordinar`
 
     return `https://wa.me/${storeConfig.whatsappNumber}?text=${encodeURIComponent(text)}`
   }
 
   const openWhatsAppDirect = (customText = '') => {
-    const text = customText || `¡Hola *Charmini.pe*! ✨ Quisiera más información sobre los Dumis (S/10) y Charms (S/5).`
+    const text = customText || `¡Hola *Charmini.pe*! ✨ Quisiera más información sobre los productos de Charmiween 🎃.`
     const url = `https://wa.me/${storeConfig.whatsappNumber}?text=${encodeURIComponent(text)}`
     window.open(url, '_blank')
   }
