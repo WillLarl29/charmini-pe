@@ -82,7 +82,7 @@
         <h3 class="font-display font-extrabold text-xl text-charmini-black group-hover:text-charmini-gray transition-colors">
           {{ product.name }}
         </h3>
-        <p class="text-xs text-charmini-gray mt-1.5 leading-relaxed line-clamp-2">
+        <p class="text-sm text-charmini-gray mt-1.5 leading-relaxed">
           {{ product.description }}
         </p>
       </div>

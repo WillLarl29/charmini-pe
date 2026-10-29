@@ -55,24 +55,31 @@
       </div>
 
       <!-- Products Carousel -->
-      <div v-if="filteredProducts.length > 0" class="relative">
+      <div
+        v-if="filteredProducts.length > 0"
+        class="relative"
+        @mouseenter="pauseAutoplay"
+        @mouseleave="resumeAutoplay"
+        @focusin="pauseAutoplay"
+        @focusout="resumeAutoplay"
+        @touchstart.passive="pauseAutoplay"
+        @touchend.passive="resumeAutoplay"
+      >
 
         <!-- Prev / Next Arrows -->
         <button
           type="button"
           @click="scrollByCard(-1)"
-          :disabled="atStart"
           aria-label="Productos anteriores"
-          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii disabled:opacity-0 disabled:pointer-events-none"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii"
         >
           <ChevronLeft class="w-6 h-6 text-charmini-black" />
         </button>
         <button
           type="button"
           @click="scrollByCard(1)"
-          :disabled="atEnd"
           aria-label="Productos siguientes"
-          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii disabled:opacity-0 disabled:pointer-events-none"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 hidden sm:flex w-12 h-12 rounded-full bg-spooky-pumpkin border-2 border-charmini-black shadow-pop items-center justify-center btn-kawaii"
         >
           <ChevronRight class="w-6 h-6 text-charmini-black" />
         </button>
@@ -175,12 +182,48 @@ const updateScrollState = () => {
   if (atEnd.value) activeIndex.value = filteredProducts.value.length - 1
 }
 
+// Loops: past the last card it returns to the first, and before the first it jumps to the last
 const scrollByCard = (direction) => {
-  track.value?.scrollBy({ left: direction * cardStep(), behavior: 'smooth' })
+  const el = track.value
+  if (!el) return
+  if (direction > 0 && atEnd.value) {
+    el.scrollTo({ left: 0, behavior: 'smooth' })
+  } else if (direction < 0 && atStart.value) {
+    el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
+  } else {
+    el.scrollBy({ left: direction * cardStep(), behavior: 'smooth' })
+  }
 }
 
 const scrollToIndex = (index) => {
   track.value?.scrollTo({ left: index * cardStep(), behavior: 'smooth' })
+}
+
+// Autoplay, paused while the user hovers, touches or focuses the carousel
+const AUTOPLAY_MS = 4000
+let autoplayTimer = null
+let paused = false
+
+const startAutoplay = () => {
+  stopAutoplay()
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  autoplayTimer = setInterval(() => {
+    if (!paused && !document.hidden) scrollByCard(1)
+  }, AUTOPLAY_MS)
+}
+
+const stopAutoplay = () => {
+  clearInterval(autoplayTimer)
+  autoplayTimer = null
+}
+
+const pauseAutoplay = () => {
+  paused = true
+}
+
+const resumeAutoplay = () => {
+  paused = false
+  startAutoplay() // restart the countdown so it doesn't jump right after the user lets go
 }
 
 // Restart the carousel whenever the filters change the product list
@@ -193,9 +236,11 @@ watch(filteredProducts, async () => {
 onMounted(() => {
   updateScrollState()
   window.addEventListener('resize', updateScrollState)
+  startAutoplay()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateScrollState)
+  stopAutoplay()
 })
 </script>
