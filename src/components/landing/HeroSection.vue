@@ -33,7 +33,7 @@
 
           <!-- Subtitle / Value prop -->
           <p class="text-lg sm:text-xl text-charmini-blue font-medium max-w-2xl mx-auto lg:mx-0">
-            ¡Juegos, activaciones, premios y show! Ven por tu portalápices de Jake, joyeros, Peperos, polos de BTS y blind boxes sorpresa.
+            ¡Juegos, activaciones, premios y show! Ven por tu portalápices de Jake, joyeros, Peperos y polos de BTS.
           </p>
 
           <!-- Event Info Signs -->

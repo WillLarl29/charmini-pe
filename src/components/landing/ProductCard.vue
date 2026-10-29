@@ -147,8 +147,7 @@ const lineBadgeClass = computed(() => {
   const classes = {
     spooky: 'bg-spooky-pumpkin text-charmini-black',
     home: 'bg-charmini-cream text-charmini-black',
-    kpop: 'bg-spooky-purple text-white',
-    sorpresa: 'bg-charmini-blue text-charmini-black'
+    kpop: 'bg-spooky-purple text-white'
   }
   return classes[props.product.line] || 'bg-charmini-blue text-charmini-black'
 })

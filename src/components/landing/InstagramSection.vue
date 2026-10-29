@@ -56,7 +56,7 @@ import { storeConfig } from '../../config/storeConfig'
 const instaPosts = [
   { src: '/images/products/segunda-feria/portalapices-jake.png', caption: 'Portalápices Jake 🐶 S/ 15' },
   { src: '/images/products/segunda-feria/joyero-concha.jpeg', caption: 'Joyero Concha 🐚 Charmini Home' },
-  { src: '/images/products/segunda-feria/blind-box.jpeg', caption: 'Blind Box 🎁 ¿Cuál te tocará?' },
+  { src: '/images/products/segunda-feria/polo-hope-on-the-street.jpeg', caption: 'Polos BTS 💜 K-Pop Corner' },
   { src: '/images/products/segunda-feria/peperos.jpg', caption: 'Peperos 🍫 K-Pop Corner' }
 ]
 </script>

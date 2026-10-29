@@ -2,15 +2,13 @@ export const productLines = [
   { id: 'all', name: 'Todos los Productos', icon: '🎃' },
   { id: 'spooky', name: 'Spooky Charms', icon: '👻' },
   { id: 'home', name: 'Charmini Home', icon: '💍' },
-  { id: 'kpop', name: 'K-Pop Corner', icon: '💜' },
-  { id: 'sorpresa', name: 'Sorpresas', icon: '🎁' }
+  { id: 'kpop', name: 'K-Pop Corner', icon: '💜' }
 ]
 
-// BTS polo designs, shared by the oversize and regular cuts
-const btsDesigns = [
-  { id: 'arirang', name: 'Arirang', image: '/images/products/segunda-feria/polo-arirang.jpg' },
-  { id: 'hope-on-the-street', name: 'Hope on the Street', image: '/images/products/segunda-feria/polo-hope-on-the-street.jpeg' },
+// BTS polo designs for the regular cut (sizes S and M)
+const btsRegularDesigns = [
   { id: 'jhope-tour', name: 'J-Hope Tour', image: '/images/products/segunda-feria/polo-jhope-tour.jpeg' },
+  { id: 'arirang', name: 'Arirang', image: '/images/products/segunda-feria/polo-arirang.jpg' },
   { id: 'v-taehyung', name: 'V Taehyung', image: '/images/products/segunda-feria/polo-v-taehyung.jpg' }
 ]
 
@@ -75,9 +73,8 @@ export const products = [
     lineName: 'K-Pop Corner',
     price: 35,
     formattedPrice: 'S/ 35.00',
-    description: 'Polo oversize con diseño de BTS. Corte holgado y cómodo para lucir tu lado ARMY en el campus. Elige tu diseño.',
-    image: btsDesigns[0].image,
-    designs: btsDesigns,
+    description: 'Polo oversize con diseño Hope on the Street de BTS. Corte holgado y cómodo para lucir tu lado ARMY en el campus.',
+    image: '/images/products/segunda-feria/polo-hope-on-the-street.jpeg',
     badge: 'ARMY 💜',
     inStock: true
   },
@@ -90,22 +87,9 @@ export const products = [
     price: 30,
     formattedPrice: 'S/ 30.00',
     description: 'Polo corte regular con diseño de BTS. Disponible en tallas S y M. Elige tu diseño.',
-    image: btsDesigns[1].image,
-    designs: btsDesigns,
+    image: btsRegularDesigns[0].image,
+    designs: btsRegularDesigns,
     badge: 'Tallas S y M',
-    inStock: true
-  },
-  {
-    id: 'box-001',
-    sku: 'BOX-001',
-    name: 'Blind Box',
-    line: 'sorpresa',
-    lineName: 'Sorpresas',
-    price: 18,
-    formattedPrice: 'S/ 18.00',
-    description: 'Caja sorpresa con una figura coleccionable. ¡No sabrás cuál te toca hasta abrirla!',
-    image: '/images/products/segunda-feria/blind-box.jpeg',
-    badge: 'Misterio 🎁',
     inStock: true
   }
 ]

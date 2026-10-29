@@ -58,7 +58,7 @@
           <h3 class="text-2xl font-display font-bold text-charmini-black">Charmiween</h3>
           <p class="text-charmini-gray leading-relaxed text-sm">
             En nuestra segunda feria Dumi se disfraza para Halloween y llega con nuevas líneas:
-            <strong>Spooky Charms, Charmini Home, K-Pop Corner y Sorpresas</strong>, elegidas a partir de la encuesta a estudiantes.
+            <strong>Spooky Charms, Charmini Home y K-Pop Corner</strong>, elegidas a partir de la encuesta a estudiantes.
           </p>
           <div class="pt-2 text-xs font-bold text-charmini-black flex items-center gap-1">
             <span class="w-2 h-2 rounded-full bg-spooky-pumpkin"></span>

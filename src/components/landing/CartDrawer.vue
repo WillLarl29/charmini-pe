@@ -39,7 +39,7 @@
           <div v-if="cartItems.length === 0" class="text-center py-16 space-y-4">
             <div class="text-6xl animate-bounce">👻</div>
             <h4 class="font-display font-bold text-xl">Tu carrito está vacío</h4>
-            <p class="text-sm text-charmini-gray">Elige tus productos de Charmiween en el catálogo: portalápices, joyeros, Peperos, polos BTS y blind boxes.</p>
+            <p class="text-sm text-charmini-gray">Elige tus productos de Charmiween en el catálogo: portalápices, joyeros, Peperos y polos BTS.</p>
             <button 
               @click="isCartOpen = false"
               class="bg-charmini-cream text-charmini-black font-extrabold px-6 py-2.5 rounded-2xl border-2 border-charmini-black btn-kawaii text-sm inline-block"
